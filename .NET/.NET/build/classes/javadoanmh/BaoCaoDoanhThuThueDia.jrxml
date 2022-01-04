@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f477433a-ac2a-43c5-bbf4-4708a8b0d8ef">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select 
+TenDia, SoLuong,
+SoLuongNgayThue, 
+DonGiaThue, 
+NgayThue,
+(SoLuongNgayThue * DonGiaThue) [Gia Thue] , 
+(select SUM(SoLuongNgayThue * DonGiaThue) from Dia d inner join CTPhieuThue ct  on d.MaDia = ct.MaDia  inner join PhieuThue pt on ct.SoPhieuThue =  pt.SoPhieuThue) [Tong Tien]
+from Dia d inner join CTPhieuThue ct  on d.MaDia = ct.MaDia  inner join PhieuThue pt on ct.SoPhieuThue =  pt.SoPhieuThue
+
+order by  SoLuong, TenDia,NgayThue DESC]]>
+	</queryString>
+	<field name="TenDia" class="java.lang.String"/>
+	<field name="SoLuong" class="java.lang.Integer"/>
+	<field name="SoLuongNgayThue" class="java.lang.Integer"/>
+	<field name="DonGiaThue" class="java.math.BigDecimal"/>
+	<field name="NgayThue" class="java.lang.String"/>
+	<field name="Gia Thue" class="java.math.BigDecimal"/>
+	<field name="Tong Tien" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="94" splitType="Stretch">
+			<staticText>
+				<reportElement x="169" y="16" width="166" height="48" forecolor="#FF3333" uuid="a931456f-37c2-4b3d-9645-52ded51434a6"/>
+				<textElement textAlignment="Center">
+					<font size="30" isBold="true"/>
+				</textElement>
+				<text><![CDATA[THUÊ ĐĨA]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="136" y="1" width="287" height="30" forecolor="#3333FF" uuid="e03a5aee-c21d-481a-bf59-081d9cf1f292"/>
+				<textElement textAlignment="Center">
+					<font size="20" isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[DOANH THU THUÊ ĐĨA]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="afc760a8-9d4a-4516-90e0-5df614627e49"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[TÊN ĐĨA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="101" y="2" width="100" height="20" uuid="df276288-d7f9-48b0-a7d0-be1c44703fed"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[SỐ LƯỢNG]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="2" width="100" height="20" uuid="b969bd13-52db-4337-a673-49edd134faa3"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[ĐƠN GIÁ THUÊ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="2" width="100" height="20" uuid="44f658a9-2108-417e-afd4-5f015e22e9aa"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[GIÁ THUÊ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="1" width="100" height="20" uuid="555390b6-9f6d-421c-a6e3-f1d70347de9f"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="12" isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[SỐ NGÀY]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="27" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="eac26318-4d04-48bc-9903-d27352765af3"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TenDia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="100" height="20" uuid="83f19b18-de2d-4d75-b20c-3103b92b5a08"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SoLuong}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="1" width="100" height="20" uuid="ee4f7120-b492-4f5c-b121-e526e0840148"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DonGiaThue}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="1" width="100" height="20" uuid="10d0b1ad-4bd6-4657-8972-c90bbfd1e337"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Gia Thue}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="1" width="100" height="20" uuid="31a576c1-f45a-4a90-a06d-48b28ae4b5ec"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="false" isItalic="false" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SoLuongNgayThue}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="16" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="12" width="100" height="20" uuid="053c8a99-95d5-42a0-b656-672feafb29a8"/>
+				<text><![CDATA[TỒNG TIỀN:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="400" y="12" width="100" height="20" uuid="980378b4-1e97-41e8-850e-2d51c791641d"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Tong Tien}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

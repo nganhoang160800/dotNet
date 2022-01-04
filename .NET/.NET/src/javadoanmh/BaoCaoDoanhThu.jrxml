@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bcd98dd4-4805-4eb0-9584-f659df5f3f6d">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[Select TenDia,DonGiaMua,DonGiaBan,SoLuong , ( DonGiaBan - DonGiaMua)*SoLuong [Doanh Thu]  from PhieuBan pb inner join 
+CTPhieuBan ct on pb.SoPhieuBan = ct.SoPhieuBan inner join dia d on d.MaDia = ct.MaDia
+
+order by TenDia, SoLuong]]>
+	</queryString>
+	<field name="TenDia" class="java.lang.String"/>
+	<field name="DonGiaMua" class="java.math.BigDecimal"/>
+	<field name="DonGiaBan" class="java.math.BigDecimal"/>
+	<field name="SoLuong" class="java.lang.Integer"/>
+	<field name="Doanh Thu" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="64" uuid="fbaff662-5bd0-4e62-affc-1c8f117b6964"/>
+				<textElement textAlignment="Center">
+					<font size="40"/>
+				</textElement>
+				<text><![CDATA[Báo Cáo Doanh Thu Bán]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="20" backcolor="#6666FF" uuid="1d4301cb-3185-4c01-a3d6-b66ba1541afd"/>
+			</rectangle>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<staticText>
+				<reportElement x="21" y="0" width="100" height="20" forecolor="#3333FF" uuid="637e4c1b-02f4-4ed7-ae30-9e5d9184cbff"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tên Đĩa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="142" y="0" width="100" height="20" forecolor="#3333FF" uuid="2822fcd2-2b36-4e31-b389-62d4bad4be50"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Đơn Giá Mua]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="242" y="0" width="100" height="20" forecolor="#3333FF" uuid="b12913c2-4f3f-4515-ad28-8bcdc41d4130"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Đơn Giá Bán]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="342" y="0" width="100" height="20" forecolor="#3333FF" uuid="98ca26ad-cb92-456f-8992-b4294a4edb98"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Số Lượng Bán]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="442" y="0" width="100" height="20" forecolor="#3333FF" uuid="f666b5c0-1ea8-4ad7-8541-0075f41673a9"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Doanh Thu]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="31" splitType="Stretch">
+			<textField>
+				<reportElement x="21" y="0" width="100" height="20" uuid="5313a443-8067-4cbb-ade7-04fc470b6dfa"/>
+				<textFieldExpression><![CDATA[$F{TenDia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="142" y="0" width="100" height="20" uuid="c24280f0-b281-4c26-9967-49e2eda57f82"/>
+				<textFieldExpression><![CDATA[$F{DonGiaMua}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="242" y="0" width="100" height="20" uuid="f2392dd9-9b26-43bd-8ceb-b9f1ea34bc14"/>
+				<textFieldExpression><![CDATA[$F{DonGiaBan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="442" y="0" width="100" height="20" uuid="8dfd577c-a7ec-4530-a988-f914a77fc4d4"/>
+				<textFieldExpression><![CDATA[$F{Doanh Thu}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="342" y="0" width="100" height="20" uuid="18d55508-7ab8-413f-940f-d0ca73b67d0b"/>
+				<textFieldExpression><![CDATA[$F{SoLuong}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
